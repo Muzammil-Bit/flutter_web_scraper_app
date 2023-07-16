@@ -7,7 +7,7 @@ class ApiClient {
 
     // Model only supports up to 4097 tokens. So we have to trim the number of tokens some how.
     final String prompt =
-        "${htmlString.length > 4000 ? htmlString.substring(0, 4000) : htmlString} \n Give 10 captions for post based on text provided. Also generate 10 tags and suggest people to tag based on same previous conditions. If text is not available generate by yourself about feelings and do not say sorry. Give your response as proper json. Name the key of captions as captions, tags as tags and suggested people to tag as suggested_tags.";
+        "${htmlString.length > 4000 ? htmlString.substring(0, 4000) : htmlString} \n Give 10 captions, 10 tags and 10 usernames of people that should be tagged for post based on text provided. Do not include any explanations, only provide a  RFC8259 compliant JSON response  following this format without deviation. Give your response as proper json. {'captions': ['array of captions'], 'tags': ['array of tags'], 'suggested_tags' : ['array of suggested people to tag']}";
 
     final request = ChatCompleteText(
       messages: [
