@@ -6,7 +6,7 @@ import 'controllers/scrape_controller.dart';
 import 'screens/main_app_screen.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
+  await dotenv.load(fileName: 'env');
   runApp(const MyApp());
 }
 
