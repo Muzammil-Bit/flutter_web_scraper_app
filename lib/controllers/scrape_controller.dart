@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../client/api_client.dart';
+import '../config/constants.dart';
 import '../helpers/global_helpers.dart';
 
 class ScrapeController extends GetxController {
@@ -19,10 +20,12 @@ class ScrapeController extends GetxController {
   scrape(String url) async {
     isLoading(true);
     try {
-      var res = await http.get(Uri.parse(url));
+      final client = http.Client();
+      var res = await client.get(
+        Uri.parse('$SCRAPER_URL?url=${url}'),
+      );
 
       var textFromHtml = extractTextFromHtml(res.body);
-      print("HTML TEXT:: ${textFromHtml}");
 
       final response = await ApiClient().generateInstagramCaption(textFromHtml);
       this.chat.value = response;
